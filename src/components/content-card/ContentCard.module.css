@@ -1,0 +1,16 @@
+.cardContainer {
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease; /* Smooth transition for hover effects */
+    cursor: pointer; /* Change cursor to pointer to indicate clickability */
+}
+
+.cardContainer img {
+    width: 100%;
+    border-radius: 12px;
+}
+
+.cardContainer:hover {
+    transform: scale(1.05); /* Slightly scale up the div */
+}

@@ -51,10 +51,10 @@ export default function LoginPage() {
     return (
         <>
             <div className={`shadow ${classes.formContainer}`}>
-                <h3 className={`text-center text-color`}>Login Form</h3>
+                <h3 className={`text-center`}>Login Form</h3>
                 <form onSubmit={loginForm.handleSubmit}>
                     <div className={`form-group my-2`}>
-                        <label htmlFor={`email`} className={`text-color`}>Email</label>
+                        <label htmlFor={`email`}>Email</label>
                         <input id={`email`} type={`email`} {...loginForm.getFieldProps('email')}
                                className={`form-control`}/>
                         {(loginForm.touched.email && loginForm.errors.email) &&
@@ -62,7 +62,7 @@ export default function LoginPage() {
                     </div>
 
                     <div className={`form-group my-2`}>
-                        <label htmlFor={`password`} className={`text-color`}>Password</label>
+                        <label htmlFor={`password`}>Password</label>
                         <input id={`password`} type={`password`} {...loginForm.getFieldProps('password')}
                                className={`form-control`}/>
                         {(loginForm.touched.password && loginForm.errors.password) &&

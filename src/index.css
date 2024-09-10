@@ -1,18 +1,5 @@
-:root {
-    /* Define custom properties for dark theme */
-    --background-color: #121212; /* Dark background color */
-    --text-color: #ffffff;       /* Light text color */
-}
-
 body {
-    background-color: var(--background-color);
-    color: var(--text-color);
     margin: 0; /* Remove default margin */
     padding: 0; /* Remove default padding */
-    font-family: Arial, sans-serif; /* Set default font family */
-    transition: background-color 0.3s, color 0.3s; /* Smooth transition for theme change */
-}
-
-.text-color {
-    color: #333300;
+    overflow-x: hidden;
 }

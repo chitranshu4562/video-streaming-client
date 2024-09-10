@@ -56,10 +56,10 @@ export default function SignUpPage() {
     return (
         <>
             <div className={`shadow ${classes.formContainer} tex`}>
-                <h3 className={`text-center text-color`}>SignUp Form</h3>
+                <h3 className={`text-center`}>SignUp Form</h3>
                 <form onSubmit={signupForm.handleSubmit}>
                     <div className={`form-group my-2`}>
-                        <label htmlFor={`name`} className={`text-color`}>Name</label>
+                        <label htmlFor={`name`}>Name</label>
                         <input id={`name`} type={`text`} {...signupForm.getFieldProps('name')}
                                className={`form-control`}/>
                         {(signupForm.touched.name && signupForm.errors.name) &&
@@ -67,7 +67,7 @@ export default function SignUpPage() {
                     </div>
 
                     <div className={`form-group my-2`}>
-                        <label htmlFor={`email`} className={`text-color`}>Email</label>
+                        <label htmlFor={`email`}>Email</label>
                         <input id={`email`} type={`email`} {...signupForm.getFieldProps('email')}
                                className={`form-control`}/>
                         {(signupForm.touched.email && signupForm.errors.email) &&
@@ -75,7 +75,7 @@ export default function SignUpPage() {
                     </div>
 
                     <div className={`form-group my-2`}>
-                        <label htmlFor={`password`} className={`text-color`}>Password</label>
+                        <label htmlFor={`password`}>Password</label>
                         <input id={`password`} type={`password`} {...signupForm.getFieldProps('password')}
                                className={`form-control`}/>
                         {(signupForm.touched.password && signupForm.errors.password) &&

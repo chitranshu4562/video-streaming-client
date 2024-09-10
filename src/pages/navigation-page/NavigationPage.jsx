@@ -4,16 +4,15 @@ import {
     getExpirationTimeInSeconds,
     removeAuthDataFromLocalStorage
 } from "../../utils/authHelper.js";
-import {redirect, useNavigate} from "react-router-dom";
-import {useSelector} from "react-redux";
+import {Outlet, redirect, useNavigate} from "react-router-dom";
 import {dispatch} from "../../store.js";
 import {removeAuthData, storeAuthData} from "../../features/authDataSlice.js";
 import {useEffect} from "react";
-import NavigationHeader from "../../navigation-header/NavigationHeader.jsx";
+import NavigationHeader from "../../components/navigation-header/NavigationHeader.jsx";
+import UploadVideo from "../../components/upload-video/UploadVideo.jsx";
 
 export default function NavigationPage() {
     const navigate = useNavigate();
-    const currentUser = useSelector(state => state.authData.user);
     const handleLogout = () => {
         removeAuthDataFromLocalStorage();
         dispatch(removeAuthData());
@@ -43,6 +42,10 @@ export default function NavigationPage() {
             <NavigationHeader
                 onLogout={handleLogout}
             />
+            <UploadVideo/>
+            <div className={`container-fluid w-100`}>
+                <Outlet/>
+            </div>
         </>
     )
 }
