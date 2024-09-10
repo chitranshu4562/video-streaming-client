@@ -4,12 +4,24 @@ import CustomModal from "../custom-modal/CustomModal.jsx";
 import VideoPlayer from "../video-player/VideoPlayer.jsx";
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import ThumbDownIcon from '@mui/icons-material/ThumbDown';
-import {IconButton} from "@mui/material";
+import {IconButton, Typography} from "@mui/material";
 import {performAction} from "../../api/videosApi.js";
 import {useSelector} from "react-redux";
+import {useMutation} from "@tanstack/react-query";
+import Comments from "../comments/Comments.jsx";
 
-export default function ContentCard({ video }) {
+export default function ContentCard({ video, onAction }) {
     const loggedInUser = useSelector(state => state.authData.user);
+    const { mutate } = useMutation({
+        mutationFn: (data) => performAction(data),
+        onSuccess: (response) => {
+            console.log(response.data);
+            onAction(video._id);
+        },
+        onError: (err) => {
+            console.error(err.response.data);
+        }
+    });
     const [isOpen, setIsOpen] = useState(false);
     const [isLiked, setIsLiked] = useState(false);
     const [isDisliked, setIsDisliked] = useState(false);
@@ -32,11 +44,7 @@ export default function ContentCard({ video }) {
             isLike: type,
             action: action
         };
-        performAction(data).then(response => {
-            console.log(response.data);
-        }).catch(err => {
-            console.error(err.response.data);
-        });
+        mutate(data);
     };
 
     useEffect(() => {
@@ -90,7 +98,9 @@ export default function ContentCard({ video }) {
                         >
                             <ThumbUpIcon
                                 color={isLiked ? 'success' : ''}
-                            />
+                            /><Typography
+                            className="p-2"
+                        >{video.likes.length}</Typography>
                         </IconButton>
                         <IconButton
                             disabled={isLiked}
@@ -102,9 +112,16 @@ export default function ContentCard({ video }) {
                         >
                             <ThumbDownIcon
                                 color={isDisliked ? 'error' : ''}
-                            />
+                            /><Typography
+                            className="p-2"
+                        >{video.dislikes.length}</Typography>
                         </IconButton>
                     </div>
+                </div>
+                <div>
+                    <Comments
+                        videoId={video._id}
+                    />
                 </div>
             </div>
         </>
